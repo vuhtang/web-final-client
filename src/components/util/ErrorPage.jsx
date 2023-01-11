@@ -1,0 +1,21 @@
+import React, {useEffect, useState} from "react";
+import {RedirectPage} from "./RedirectPage";
+
+export function ErrorPage() {
+    const [flag, setFlag] = useState(false)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setFlag(true)
+        }, 2000)
+    })
+
+    return (
+        <div className="main">
+            {flag && <RedirectPage />}
+            <div className="big-warning">
+                <h2>gotcha</h2>
+            </div>
+        </div>
+    )
+}

@@ -1,0 +1,57 @@
+.header {
+    padding: 0 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgb(243, 243, 243);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 6px 4px -4px rgba(0, 0, 0, .2);
+}
+
+.header-element {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.header-element a {
+    color: #000000;
+    text-decoration: none;
+}
+
+a.active {
+    color: #5e5e5e;
+}
+
+/* ------------------------------------------ */
+
+.fio {
+    display: flex;
+    flex-direction: column;
+}
+
+.fio-text {
+    margin: 0 50px;
+    color: #da680c;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.fio-text-before, .fio-text-after {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 5px;
+}
+
+.fio-text-after {
+    transition: color .2s linear;
+}
+
+.fio-text-after:hover {
+    color: #fa7a0d;
+}

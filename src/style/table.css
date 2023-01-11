@@ -1,0 +1,31 @@
+table, td, th, tr {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    width: 100%;
+    background: rgba(222, 220, 220, 0.6);
+}
+
+tr > td {
+    padding: 3px;
+}
+
+.p-paginator.p-component.p-paginator-top {
+    display: flex;
+    flex-direction: row;
+}
+
+.p-paginator.p-component.p-paginator-top > span, .paginator-buttons{
+    margin: auto auto 5px;
+    color: #000000;
+}
+
+.p-paginator.p-component.p-paginator-top > span{
+    font-size: 15px;
+}
+
+.paginator-buttons[disabled] {
+    color: #525252;
+}

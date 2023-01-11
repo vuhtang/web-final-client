@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+.message {
+    color: #000000;
+}
+
+.warning {
+    color: #fd0000;
+}
+
+.big-warning {
+    color: #000000;
+    font-size: 20px;
+    font-family: 'Rubik', sans-serif;
+    transition: color .2s linear;
+}
+
+.big-warning:hover {
+    color: #e52222;
+}

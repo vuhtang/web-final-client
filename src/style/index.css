@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Rubik Bubbles', cursive;
+  color: #333;
+  line-height: 1.6;
+  font-size: 17px;
+
+  background: url('../assets/images/manuls.png') no-repeat fixed center;
+  background-size: cover;
+  animation: bg-animation 1s ease-in-out alternate infinite;
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: 0 1px;
+  }
+
+  25% {
+    background-position: 0 0;
+  }
+
+  75% {
+    background-position: 0 1px;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: 110px auto;
+    background: rgba(243, 243, 243, 0.89);
+    text-align: center;
+    color: #6b2c05;
+}

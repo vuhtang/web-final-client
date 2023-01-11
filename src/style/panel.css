@@ -1,0 +1,21 @@
+.panel-element-inner h4 {
+    margin: 2px;
+}
+
+.panel-element-inner {
+    margin-top: 15px;
+}
+
+.panel-element-inner button {
+    font-family: 'Rubik Bubbles', cursive;
+    color: #000000;
+}
+
+.panel-element button {
+    font-family: 'Rubik Bubbles', cursive;
+    color: #000000;
+}
+
+.panel-element {
+    margin: 10px;
+}
