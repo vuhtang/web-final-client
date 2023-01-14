@@ -1,31 +1,30 @@
 import thunk from "redux-thunk";
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import {errorReducer, radiusReducer, shotsReducer} from "./reducers/reducers";
+import {authReducer, errorReducer, radiusReducer, shotsReducer} from "./reducers/reducers";
+import storage from "redux-persist/lib/storage"
+import {
+    persistReducer,
+    persistStore
+} from "redux-persist";
 
+const persistConfig = {
+    key: 'root',
+    storage,
+    blacklist: ['error']
+}
 
-// state = {
-//     shot: {
-//         currPage: 0
-//         pageSize: 10
-//         totalRecords: 0
-//         shots: []
-//     },
-//     radius: {
-//         value: 1
-//     },
-//         error: {
-//             message: ''
-//         }
-// }
-
-const root =combineReducers({
+const rootReducer = combineReducers({
     shot: shotsReducer,
     radius: radiusReducer,
-    error: errorReducer
+    error: errorReducer,
+    auth: authReducer
 })
 
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({
-        reducer: root,
+        reducer: persistedReducer,
         middleware: [thunk],
     }
 )
+
+export const persistor = persistStore(store)

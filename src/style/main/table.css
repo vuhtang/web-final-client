@@ -17,12 +17,12 @@ tr > td {
     flex-direction: row;
 }
 
-.p-paginator.p-component.p-paginator-top > span, .paginator-buttons{
+.p-paginator.p-component.p-paginator-top > span, .paginator-buttons {
     margin: auto auto 5px;
     color: #000000;
 }
 
-.p-paginator.p-component.p-paginator-top > span{
+.p-paginator.p-component.p-paginator-top > span {
     font-size: 15px;
 }
 

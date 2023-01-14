@@ -1,13 +1,13 @@
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
+import {useFetchParams} from "./fetchParams";
 
 
 export function useShots() {
 
+
+    const {offset, pageSize, token, totalRecords} = useFetchParams()
     const shots = useSelector(state => state.shot.shots)
-    const pageSize = useSelector(state => state.shot.pageSize)
-    const offset = useSelector(state => state.shot.offset)
-    const totalRecords = useSelector(state => state.shot.totalRecords)
     const [pageSizeIsExhausted, setPageSizeIsExhausted] = useState(false)
     const [lastPageOffset, setLastPageOffset] = useState(0)
 
@@ -30,5 +30,5 @@ export function useShots() {
         }
     }, [pageSize, shots, offset])
 
-    return {shots, pageSizeIsExhausted, offset, pageSize, totalRecords, lastPageOffset}
+    return {shots, pageSizeIsExhausted, offset, pageSize, totalRecords, lastPageOffset, token}
 }

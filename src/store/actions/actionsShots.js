@@ -1,19 +1,26 @@
 import {
-    CLEAR,
-    LOAD_SHOTS,
-    REMOVE_ERROR_MESSAGE,
-    SET_ERROR_MESSAGE, SET_OFFSET,
-    SET_RADIUS,
+    CLEAR, LOAD_SHOTS,
+    REMOVE_ERROR_MESSAGE, SET_ERROR_MESSAGE,
+    SET_OFFSET, SET_RADIUS,
     SET_TOTAL_RECORDS
-} from "../utils/const/actionTypes.js";
+} from "../../utils/const/actionTypes.js";
 import axios from "axios";
 
-export function addShot(shot, pageSizeIsExhausted, lastPageOffset, pageSize, offset) {
+const config = (token) => {
+    return {
+        headers: {
+            'Authorization': token
+        }
+    }
+}
+
+export function addShot(shot, pageSizeIsExhausted, lastPageOffset, pageSize, offset, token) {
     return function (dispatch) {
         if (pageSizeIsExhausted && offset !== lastPageOffset) {
-            axios.post('http://localhost:8080/api/shots', shot).then(() => {
+            axios.post('http://localhost:8080/api/shots', shot, config(token)).then(() => {
+
                 dispatch(setOffset(lastPageOffset))
-                dispatch(fetchShots(lastPageOffset, pageSize))
+                dispatch(fetchShots(lastPageOffset, pageSize, token))
             }).catch(() => {
                 dispatch(setErrorMessage('Server is currently unavailable'))
             })
@@ -21,16 +28,15 @@ export function addShot(shot, pageSizeIsExhausted, lastPageOffset, pageSize, off
         }
         if (pageSizeIsExhausted && offset === lastPageOffset) {
             lastPageOffset++
-            console.log(lastPageOffset)
-            axios.post('http://localhost:8080/api/shots', shot).then(() => {
+            axios.post('http://localhost:8080/api/shots', shot, config(token)).then(() => {
                 dispatch(setOffset(lastPageOffset))
-                dispatch(fetchShots(lastPageOffset, pageSize))
+                dispatch(fetchShots(lastPageOffset, pageSize, token))
             }).catch(() => {
                 dispatch(setErrorMessage('Server is currently unavailable'))
             })
         } else {
-            axios.post('http://localhost:8080/api/shots', shot).then(() => {
-                dispatch(fetchShots(lastPageOffset, pageSize))
+            axios.post('http://localhost:8080/api/shots', shot, config(token)).then(() => {
+                dispatch(fetchShots(lastPageOffset, pageSize, token))
             }).catch(() => {
                 dispatch(setErrorMessage('Server is currently unavailable'))
             })
@@ -38,9 +44,9 @@ export function addShot(shot, pageSizeIsExhausted, lastPageOffset, pageSize, off
     }
 }
 
-export function fetchShots(offset, pageSize) {
+export function fetchShots(offset, pageSize, token) {
     return function (dispatch) {
-        axios.get(`http://localhost:8080/api/shots/pagination/${offset}/${pageSize}`)
+        axios.get(`http://localhost:8080/api/shots/pagination/${offset}/${pageSize}`, config(token))
             .then((res) => {
                 let page = res.data
                 dispatch(loadShots(page["content"]))
@@ -53,9 +59,9 @@ export function fetchShots(offset, pageSize) {
     }
 }
 
-export function clear() {
+export function clear(token) {
     return function (dispatch) {
-        axios.delete('http://localhost:8080/api/shots')
+        axios.delete('http://localhost:8080/api/shots', config(token))
             .then(() => {
                 dispatch(deleteShots())
                 dispatch(setOffset(0))

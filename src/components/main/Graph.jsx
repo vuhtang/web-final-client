@@ -1,4 +1,4 @@
-import "../../style/graph.css"
+import "../../style/main/graph.css"
 import {useDots} from "../../hooks/dots";
 
 export function Graph() {

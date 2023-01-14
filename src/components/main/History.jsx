@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
-import '../../style/table.css'
+import '../../style/main/table.css'
 import {useDispatch} from "react-redux";
 import {MyMessage} from "../util/MyMessage";
-import {clear, fetchShots, setOffset} from "../../store/actions";
+import {clear, fetchShots, setOffset} from "../../store/actions/actionsShots";
 import {useShots} from "../../hooks/shots";
 
 
 export function History() {
 
-    const {shots, offset, pageSize, totalRecords} = useShots()
+    const {shots, offset, pageSize, totalRecords, token} = useShots()
 
     const [empty, setEmpty] = useState(true)
     const [firstButtonDisabled, setFirstButtonDisabled] = useState(true)
@@ -39,7 +39,7 @@ export function History() {
 
     function firstPageButtonOnClick() {
         dispatch(setOffset(0))
-        dispatch(fetchShots(0, pageSize))
+        dispatch(fetchShots(0, pageSize, token))
     }
 
     function lastPageButtonOnClick() {
@@ -47,17 +47,17 @@ export function History() {
             ? Math.trunc(totalRecords / pageSize) - 1
             : Math.trunc(totalRecords / pageSize)
         dispatch(setOffset(lastPageOffset))
-        dispatch(fetchShots(lastPageOffset, pageSize))
+        dispatch(fetchShots(lastPageOffset, pageSize, token))
     }
 
     function nextPageButtonOnClick() {
         dispatch(setOffset(offset + 1))
-        dispatch(fetchShots(offset + 1, pageSize))
+        dispatch(fetchShots(offset + 1, pageSize, token))
     }
 
     function prevPageButtonOnClick() {
         dispatch(setOffset(offset - 1))
-        dispatch(fetchShots(offset - 1, pageSize))
+        dispatch(fetchShots(offset - 1, pageSize, token))
     }
 
     const template = {
@@ -105,7 +105,7 @@ export function History() {
 
     function submitHandler(event) {
         event.preventDefault()
-        dispatch(clear())
+        dispatch(clear(token))
     }
 
 

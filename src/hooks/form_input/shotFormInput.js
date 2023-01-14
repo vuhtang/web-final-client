@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {setRadius} from "../store/actions";
+import {setRadius} from "../../store/actions/actionsShots";
 
-export function useFormInput() {
+export function useShotFormInput() {
 
     const radius = useSelector(state => state.radius.value)
     const dispatch = useDispatch()
@@ -40,13 +40,14 @@ export function useFormInput() {
     }
 
     function getXValue(x) {
-        if (isNumeric(x) && x > -5 && x < 5){
+        if (isNumeric(x) && x > -5 && x < 5) {
             setXValue(x)
             setXIsValid(true);
         } else {
             setXIsValid(false)
         }
     }
+
     function getYValue(y) {
         if (isNumeric(y) && y > -5 && y < 3) {
             setYValue(y)
@@ -55,6 +56,7 @@ export function useFormInput() {
             setYIsValid(false)
         }
     }
+
     function getRValue(r) {
         if (isNumeric(r) && r > -5 && r < 5) {
             // setRValue(r)

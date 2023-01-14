@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {addShot} from "../store/actions";
+import {addShot} from "../store/actions/actionsShots";
 import {useShots} from "./shots";
 
 const width = 400
@@ -8,7 +8,7 @@ const height = 400
 
 export function useDots() {
 
-    const {shots: dots, pageSizeIsExhausted, lastPageOffset, pageSize, offset } = useShots()
+    const {shots: dots, pageSizeIsExhausted, lastPageOffset, pageSize, offset, token} = useShots()
 
     const radius = useSelector(state => state.radius.value)
     const dispatch = useDispatch()
@@ -28,7 +28,7 @@ export function useDots() {
         let x = Math.round(X * r / R * 1000000) / 1000000
         let y = Math.round(Y * r / R * 1000000) / 1000000
 
-        dispatch(addShot({x, y, r}, pageSizeIsExhausted, lastPageOffset, pageSize, offset))
+        dispatch(addShot({x, y, r}, pageSizeIsExhausted, lastPageOffset, pageSize, offset, token))
     }
 
     useEffect(() => {
@@ -70,6 +70,7 @@ function drawDots(dots) {
         }
     }
 }
+
 function drawOnCanvas() {
     const canvas = document.getElementById("area-image");
     if (!canvas) return

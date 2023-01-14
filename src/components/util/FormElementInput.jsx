@@ -1,8 +1,8 @@
 import React from "react";
 
-export function ShotFormElementInput({title, valueGetter}) {
+export function FormElementInput({title, valueGetter, inputType, maxLength}) {
 
-    function changeHandler (event) {
+    function changeHandler(event) {
         const raw = event.currentTarget.value.trim()
         valueGetter(raw)
     }
@@ -11,8 +11,8 @@ export function ShotFormElementInput({title, valueGetter}) {
         <div className="panel-element-inner">
             <h4>{title}</h4>
             <input
-                type="text"
-                maxLength={6}
+                type={inputType}
+                maxLength={maxLength}
                 placeholder="Enter value..."
                 onInput={changeHandler}
             />
