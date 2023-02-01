@@ -1,7 +1,7 @@
 import {
     CLEAR,
-    LOAD_SHOTS,
-    REMOVE_ERROR_MESSAGE,
+    LOAD_SHOTS, LOGIN, LOGOUT,
+    REMOVE_ERROR_MESSAGE, SET_AUTH_ERROR,
     SET_ERROR_MESSAGE,
     SET_OFFSET,
     SET_RADIUS, SET_TOTAL_RECORDS
@@ -13,8 +13,9 @@ const initShotsState = {
     totalRecords: 0,
     shots: []
 }
+
 export function shotsReducer(state = initShotsState, action) {
-    switch (action.type){
+    switch (action.type) {
         default:
             return state
         case LOAD_SHOTS:
@@ -53,5 +54,30 @@ export function errorReducer(state = initialErrorState, action) {
             return {...state, message: action.payload}
         case REMOVE_ERROR_MESSAGE:
             return {...state, message: ''}
+    }
+}
+
+const initialAuthState = {
+    isAuthorized: false,
+    token: '',
+    username: '',
+    error: ''
+}
+
+export function authReducer(state = initialAuthState, action) {
+    switch (action.type) {
+        default:
+            return state;
+        case LOGIN:
+            return {
+                ...state,
+                token: action.payload.token,
+                username: action.payload.username,
+                isAuthorized: true
+            }
+        case SET_AUTH_ERROR:
+            return {...state, error: action.payload}
+        case LOGOUT:
+            return {...state, isAuthorized: false}
     }
 }

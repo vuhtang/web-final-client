@@ -1,7 +1,7 @@
 import React from "react";
 import {FioText} from "./FioText";
 import {Navbar} from "./Navbar";
-import "../../style/header.css"
+import "../../style/header/header.css"
 
 export function Header() {
 

@@ -1,0 +1,26 @@
+.main-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 110px auto;
+    background: rgba(243, 243, 243, 0.89);
+    text-align: center;
+    color: #6b2c05;
+}
+
+#login {
+    font-size: 19px;
+}
+
+.register {
+    font-size: 15px;
+}
+
+#register {
+    color: #da680c;
+}
+
+#back {
+    color: #da680c;
+}

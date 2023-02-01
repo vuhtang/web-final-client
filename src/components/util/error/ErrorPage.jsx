@@ -7,12 +7,12 @@ export function ErrorPage() {
     useEffect(() => {
         setTimeout(() => {
             setFlag(true)
-        }, 2000)
+        }, 1000)
     })
 
     return (
         <div className="main">
-            {flag && <RedirectPage />}
+            {flag && <RedirectPage/>}
             <div className="big-warning">
                 <h2>gotcha</h2>
             </div>

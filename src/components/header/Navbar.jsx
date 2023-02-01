@@ -1,12 +1,19 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {logOutAndClearMessage} from "../../store/actions/actionsAuth";
 
 export function Navbar() {
+    const isAuthorized = useSelector(state => state.auth.isAuthorized)
+    const dispatch = useDispatch()
+
+    const onClickLogOut = () => {
+        dispatch(logOutAndClearMessage())
+    }
 
     return (
         <div className="header-element">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/login">Login</NavLink>
+            {isAuthorized ? <NavLink to="/" onClick={onClickLogOut}>LogOut</NavLink> : <NavLink to="/">LogIn</NavLink>}
         </div>
     )
 }
